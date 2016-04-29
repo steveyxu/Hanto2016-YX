@@ -7,5 +7,5 @@ package hanto.studentyxu4.common;
  * @author yxu4
  */
 public enum HantoMoveType {
-	WALK,FLY,STILL;
+	WALK,FLY,STILL,JUMP;
 }

@@ -35,6 +35,7 @@ import hanto.studentyxu4.common.state.RedMove;
 import hanto.studentyxu4.common.validator.ButterFlyValidator;
 import hanto.studentyxu4.common.validator.ConnectionValidator;
 import hanto.studentyxu4.common.validator.FlyValidator;
+import hanto.studentyxu4.common.validator.JumpValidator;
 import hanto.studentyxu4.common.validator.MoveValidatorStrategy;
 import hanto.studentyxu4.common.validator.PlaceValidator;
 import hanto.studentyxu4.common.validator.StillValidator;
@@ -337,6 +338,8 @@ public void placePiece(HantoCoordinateImpl to, HantoPieceType pieceType) throws 
 			return new FlyValidator(coordinateTable);
 		case STILL:
 			return new StillValidator();
+		case JUMP:
+			return new JumpValidator(coordinateTable);
 		default:
 			break;
 		}

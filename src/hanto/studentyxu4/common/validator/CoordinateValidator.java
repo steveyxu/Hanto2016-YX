@@ -92,4 +92,17 @@ public abstract class CoordinateValidator {
 			return null;
 		}
 	}
+	
+	/**
+	 * The direct distance between to hexes
+	 * @param from hex coordinate 1
+	 * @param to hex coordinate 2
+	 * @return a int indicates the number of distance difference between 2 hexes
+	 */
+	protected int DirectDistance(HantoCoordinateImpl from, HantoCoordinateImpl to){
+		final int xDif = Math.abs(from.getX() - to.getX());
+		final int yDif = Math.abs(from.getY() - to.getY());
+		
+		return xDif > yDif ? xDif : yDif;
+	}
 }
