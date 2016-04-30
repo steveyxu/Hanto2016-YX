@@ -37,39 +37,38 @@ public class DeltaHantoMasterTest {
 	 * Internal class for these test cases.
 	 * @version Sep 13, 2014
 	 */
-	class TestHantoCoordinate implements HantoCoordinate
-	{
-	private final int x, y;
+	class TestHantoCoordinate implements HantoCoordinate {
+		private final int x, y;
 	
-	/**
-	 * TestHantoCoordinate Constructor
-	 * @param x coordinate
-	 * @param y coordinate
-	 */
-	TestHantoCoordinate(int x, int y)
-	{
-		this.x = x;
-		this.y = y;
-	}
-	/*
-	 * @see hanto.common.HantoCoordinate#getX()
-	 */
-	@Override
-	public int getX()
-	{
-		return x;
-	}
+		/**
+		 * TestHantoCoordinate Constructor
+		 * @param x coordinate
+		 * @param y coordinate
+		 */
+		TestHantoCoordinate(int x, int y)
+		{
+			this.x = x;
+			this.y = y;
+		}
+		/*
+		 * @see hanto.common.HantoCoordinate#getX()
+		 */
+		@Override
+		public int getX()
+		{
+			return x;
+		}
 
-	/*
-	 * @see hanto.common.HantoCoordinate#getY()
-	 */
-	@Override
-	public int getY()
-	{
-		return y;
-	}
+		/*
+		 * @see hanto.common.HantoCoordinate#getY()
+		 */
+		@Override
+		public int getY()
+		{
+			return y;
+		}
 
-}
+	}
 
 private static HantoGameFactory factory = HantoGameFactory.getInstance();
 private HantoGame game;

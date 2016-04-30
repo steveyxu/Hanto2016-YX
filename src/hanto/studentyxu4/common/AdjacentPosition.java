@@ -41,6 +41,4 @@ public enum AdjacentPosition {
 		return y;
 	}
 	
-
-	
 }
