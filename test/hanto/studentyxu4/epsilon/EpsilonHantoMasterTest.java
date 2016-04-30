@@ -153,5 +153,12 @@ public class EpsilonHantoMasterTest {
 				  md(SPARROW, -1, -1),md(HORSE, 0, 2,0,-2));
 	}
 	
+	@Test (expected = HantoException.class)
+	public void flyOutOfBound() throws HantoException {
+		makeMoves(md(BUTTERFLY, 0, 0), md(BUTTERFLY, 0, 1),
+				  md(SPARROW, 0, -1),md(HORSE, 0, 2),
+				  md(SPARROW, 0, -2),md(SPARROW, 0, 3),
+				  md(CRAB, -1,-1),md(SPARROW, 0, 3,0,-3));
+	}
 	
 }

@@ -108,11 +108,9 @@ public class HantoBoard {
 		ruleSet.put(pieceType, moveRule);
 	}
 	/**
-	 * 
 	 * @param pieceType
 	 * @param from
 	 * @param to
-	
 	 * @throws HantoException */
 	public void makeMove(HantoPieceType pieceType, HantoCoordinateImpl from, HantoCoordinateImpl to) throws HantoException{
 		
@@ -310,6 +308,7 @@ public void placePiece(HantoCoordinateImpl to, HantoPieceType pieceType) throws 
 		ButterFlyValidator butterFlyValidator = new ButterFlyValidator(coordinateTable, maxButterflyTurns);
 		// generate the validator
 		final MoveRule rule = ruleSet.get(pieceType);
+
 		MoveValidatorStrategy validator = makeValidator(rule.getMoveType(), rule.getMaxDistance());
 		
 		if (!butterFlyValidator.butterflyPlaced(boardState.currentColor())){
@@ -329,21 +328,21 @@ public void placePiece(HantoCoordinateImpl to, HantoPieceType pieceType) throws 
 	 * A factory method that provides the move strategy
 	 * @param moveType
 	 * @return
+	 * @throws HantoException 
 	 */
-	private MoveValidatorStrategy makeValidator(HantoMoveType moveType, int maxDistance) {
+	private MoveValidatorStrategy makeValidator(HantoMoveType moveType, int maxDistance) throws HantoException {
 		switch (moveType) {
 		case WALK:
 			return new WalkValidator(maxDistance,coordinateTable);
 		case FLY:
-			return new FlyValidator(coordinateTable);
+			return new FlyValidator(maxDistance,coordinateTable);
 		case STILL:
 			return new StillValidator();
 		case JUMP:
 			return new JumpValidator(coordinateTable);
 		default:
-			break;
+			throw new HantoException("Unsupported Piece");
 		}
-		return null;
 	}
 	
 	/**

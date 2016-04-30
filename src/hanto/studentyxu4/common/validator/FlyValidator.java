@@ -16,12 +16,16 @@ import hanto.studentyxu4.common.HantoPieceImpl;
  */
 public class FlyValidator extends CoordinateValidator implements MoveValidatorStrategy{
 
+	private int maxDistance = Integer.MAX_VALUE;
+	
 	/**
 	 * Constructor for FlyValidator.
+	 * @param distance
 	 * @param coordinateTable Map<HantoCoordinateImpl,HantoPieceImpl>
 	 */
-	public FlyValidator(Map<HantoCoordinateImpl, HantoPieceImpl> coordinateTable) {
+	public FlyValidator(int distance, Map<HantoCoordinateImpl, HantoPieceImpl> coordinateTable) {
 		super(coordinateTable);
+		maxDistance = distance;
 	}
 
 	@Override
@@ -30,14 +34,22 @@ public class FlyValidator extends CoordinateValidator implements MoveValidatorSt
 			return false;
 		}
 		
+		if (directDistance(from, to) > maxDistance) {
+			return false;
+		}
+		
 		Map<HantoCoordinateImpl, HantoPieceImpl> updatedCoordinate;
 		updatedCoordinate = new Hashtable<HantoCoordinateImpl, HantoPieceImpl>(coordinateTable);
 		updatedCoordinate = updateTempCoordinate(from, to);
+	
 		ConnectionValidator connectionValidator = new ConnectionValidator(updatedCoordinate);
 		if (!connectionValidator.isConnectedGraph()){
 			return false;
 		}
+	
 		return true;
 	}
+	
+	
 
 }

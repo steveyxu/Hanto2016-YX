@@ -72,8 +72,10 @@ public class HantoGameFactory
 				break;
 			case DELTA_HANTO:
 				game = new DeltaHantoGame(movesFirst);
+				break;
 			case EPSILON_HANTO:
 				game = new EpsilonHantoGame(movesFirst);
+				break;
 		default:
 			break;
 		}

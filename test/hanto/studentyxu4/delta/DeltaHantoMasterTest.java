@@ -14,9 +14,12 @@ package hanto.studentyxu4.delta;
 import static hanto.common.HantoPieceType.*;
 import static hanto.common.MoveResult.*;
 import static hanto.common.HantoPlayerColor.*;
+import static hanto.common.HantoGameID.*;
 import static org.junit.Assert.*;
 import hanto.common.*;
 import hanto.studentyxu4.HantoGameFactory;
+
+
 import org.junit.*;
 
 public class DeltaHantoMasterTest {
@@ -90,12 +93,12 @@ public static void initializeClass()
 public void setup()
 {
 	// By default, blue moves first.
-	game = factory.makeHantoGame(HantoGameID.DELTA_HANTO);
+	game = factory.makeHantoGame(DELTA_HANTO);
 }
 
 
 @Test
-public void getAnDeltaHantoGameFromTheFactory()
+public void getDeltaHantoGameFromTheFactory()
 {
 	assertTrue(game instanceof DeltaHantoGame);
 }

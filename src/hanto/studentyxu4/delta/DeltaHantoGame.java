@@ -22,9 +22,7 @@ import hanto.studentyxu4.common.HantoCoordinateImpl;
  */
 public class DeltaHantoGame implements HantoGame {
 
-
-	
-	HantoBoard board;
+	private HantoBoard board;
 	
 
 	/**
@@ -35,7 +33,7 @@ public class DeltaHantoGame implements HantoGame {
 		board = new HantoBoard(movesFirst, true);
 	
 		board.addRule(BUTTERFLY, WALK, 1, 1);
-		board.addRule(SPARROW, FLY, 4, 100);
+		board.addRule(SPARROW, FLY, 4, Integer.MAX_VALUE);
 		board.addRule(CRAB, WALK, 4, 3);
 	}
 
