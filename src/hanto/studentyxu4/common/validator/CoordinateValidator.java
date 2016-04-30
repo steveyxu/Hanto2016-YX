@@ -100,13 +100,6 @@ public abstract class CoordinateValidator {
 	 * @return a int indicates the number of distance difference between 2 hexes
 	 */
 	protected int directDistance(HantoCoordinateImpl from, HantoCoordinateImpl to){
-		final int xDif = from.getX() - to.getX();
-		final int yDif = from.getY() - to.getY();
-		
-		final int absXDif = Math.abs(xDif);
-		final int absYDif = Math.abs(yDif);
-		
-		return  xDif == yDif ? absXDif+absYDif : 
-				absXDif > absYDif ? absXDif : absYDif;
+		return from.distanceTo(to);
 	}
 }

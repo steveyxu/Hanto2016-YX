@@ -16,14 +16,13 @@ public interface BoardState {
 	 * Change the state of the game to next movement.
 	 * @param moveResult the move result after a valid move 
 	 * @param maxMove the largest allowed moves for a game
-	
-	
-	 * @return the state of next movement * @throws HantoException */
+	 * @return the state of next movement  
+	 * @throws HantoException 
+	 */
 	 BoardState nextMove(MoveResult moveResult, int maxMove) throws HantoException;
 	
 	/**
 	 * Return the current player's color
-	
 	 * @return current player's color */
 	 HantoPlayerColor currentColor();
 	 

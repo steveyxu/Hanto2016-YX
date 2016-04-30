@@ -12,7 +12,12 @@
 
 package hanto.studentyxu4.common;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import hanto.common.HantoCoordinate;
+
+import static hanto.studentyxu4.common.AdjacentPosition.*;
 
 /**
  * The implementation for my version of Hanto.
@@ -20,7 +25,7 @@ import hanto.common.HantoCoordinate;
  */
 public class HantoCoordinateImpl implements HantoCoordinate
 {
-	final private int x, y;
+	private final int x, y;
 
 	/**
 	 * The only constructor.
@@ -54,7 +59,7 @@ public class HantoCoordinateImpl implements HantoCoordinate
 		return y;
 	}
 
-	/* (non-Javadoc)
+	/* 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -66,7 +71,7 @@ public class HantoCoordinateImpl implements HantoCoordinate
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/* 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -92,13 +97,39 @@ public class HantoCoordinateImpl implements HantoCoordinate
 
 	/**
 	 * @param position
-	
 	 * @return a new coordinate  */
 	public HantoCoordinateImpl makeRelativeCoordinate(final AdjacentPosition position) {
 		final HantoCoordinateImpl newCoordinate = 
-				new HantoCoordinateImpl(this.getX() + position.getX(),
-						this.getY() + position.getY());
+				new HantoCoordinateImpl(x + position.getX(),
+						y + position.getY());
 		return newCoordinate;
 	}
+	
+	/**
+	 * Find nearby hexes of an coordinate
+	 * @return Collection<HantoCoordinateImpl>
+	 */
+	public Collection<HantoCoordinateImpl> getAdjacentCoordinates() {
+		Collection<HantoCoordinateImpl> ret = new ArrayList<HantoCoordinateImpl>();
+		ret.add(makeRelativeCoordinate(UP));
+		ret.add(makeRelativeCoordinate(DOWN));
+		ret.add(makeRelativeCoordinate(UPLEFT));
+		ret.add(makeRelativeCoordinate(UPRIGHT));
+		ret.add(makeRelativeCoordinate(DOWNLEFT));
+		ret.add(makeRelativeCoordinate(DOWNRIGHT));
+		
+		return ret;
+	}
+	/**
+	 * @param to HantoCoordinateImpl
+	 * @return the distance to the target coordinate
+	 */
+	public int distanceTo(HantoCoordinateImpl to) {
+		int z1 = 0 - x - y;
+		int z2 = 0 - to.getX() - to.getY();
+
+		return (Math.abs(x - to.getX()) + Math.abs(y - to.getY()) + Math.abs(z1 - z2)) / 2;
+	}
+	
 
 }

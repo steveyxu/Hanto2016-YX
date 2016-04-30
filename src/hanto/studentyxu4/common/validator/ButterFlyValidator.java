@@ -36,7 +36,6 @@ public class ButterFlyValidator extends CoordinateValidator {
 	 * @return true if the butter fly with this color is placed
 	 */
 	public boolean butterflyPlaced(HantoPlayerColor color){
-		System.out.println(color);
 		for (HantoCoordinateImpl key:coordinateTable.keySet()){
 			if ((coordinateTable.get(key).getColor() == color) 
 					&& (coordinateTable.get(key).getType() == BUTTERFLY)) {

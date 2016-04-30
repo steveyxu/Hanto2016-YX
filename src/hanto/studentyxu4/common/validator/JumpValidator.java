@@ -4,12 +4,15 @@
  */
 package hanto.studentyxu4.common.validator;
 
+import java.util.Hashtable;
 import java.util.Map;
 
-import hanto.common.HantoException;
 import hanto.studentyxu4.common.HantoCoordinateImpl;
 import hanto.studentyxu4.common.HantoPieceImpl;
-
+/**
+ * The validator for jump movement
+ * @author steve
+ */
 public class JumpValidator extends CoordinateValidator implements MoveValidatorStrategy {
 	/**
 	 * Default constructor for jump validator
@@ -20,10 +23,15 @@ public class JumpValidator extends CoordinateValidator implements MoveValidatorS
 	}
 
 	@Override
-	public boolean canMove(HantoCoordinateImpl from, HantoCoordinateImpl to) throws HantoException {
+	public boolean canMove(HantoCoordinateImpl from, HantoCoordinateImpl to) {
 		if (hasPieceAt(to)) {
 			return false;
 		}
+		
+		if (directDistance(from, to) < 2){
+			return false;
+		}
+		
 		//validate if source and destination are in a straight line
 		final int xDif = to.getX() - from.getX();
 		final int yDif = to.getY() - from.getY();
@@ -36,11 +44,20 @@ public class JumpValidator extends CoordinateValidator implements MoveValidatorS
 		final int yDir = (yDif == 0) ? 0 : (yDif/Math.abs(yDif));
 		int x = from.getX(), y = from.getY();
 		while ((x != to.getX()) || (y != to.getY())) {
-			if (!hasPieceAt(new HantoCoordinateImpl(x,y))){
+			if (!hasPieceAt(new HantoCoordinateImpl(x, y))){
 				return false;
 			}
 			x = x + xDir;
 			y = y + yDir;
+		}
+		
+		Map<HantoCoordinateImpl, HantoPieceImpl> updatedCoordinate;
+		updatedCoordinate = new Hashtable<HantoCoordinateImpl, HantoPieceImpl>(coordinateTable);
+		updatedCoordinate = updateTempCoordinate(from, to);
+	
+		ConnectionValidator connectionValidator = new ConnectionValidator(updatedCoordinate);
+		if (!connectionValidator.isConnectedGraph()){
+			return false;
 		}
 		
 		return true;

@@ -29,6 +29,7 @@ public class PlaceValidator extends CoordinateValidator{
      * @param coordinateTable Map<HantoCoordinateImpl,HantoPieceImpl>
      * @param color HantoPlayerColor
      * @param moveCounter int
+     * @param diffColorNearby boolean true if allow place a piece nearby opponent's color 
      */
     public PlaceValidator(Map<HantoCoordinateImpl, HantoPieceImpl> coordinateTable, 
     		HantoPlayerColor color, int moveCounter, boolean diffColorNearby) {

@@ -3,7 +3,6 @@
  */
 package hanto.studentyxu4.common.state;
 
-import hanto.common.HantoException;
 import hanto.common.HantoPlayerColor;
 import hanto.common.MoveResult;
 /**
@@ -14,8 +13,8 @@ public class GameOver implements BoardState {
 
 		
 	@Override
-	public BoardState nextMove(MoveResult moveResult, int maxMove) throws HantoException {
-		throw new HantoException("Can not move when game is over");
+	public BoardState nextMove(MoveResult moveResult, int maxMove) {
+		return null;
 	}
 
 	@Override

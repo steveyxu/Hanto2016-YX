@@ -1,3 +1,7 @@
+/**
+ * Hanto 2016
+ * @author Yang(Steve) Xu
+ */
 package hanto.studentyxu4.gamma;
 
 import static hanto.common.HantoPieceType.*;
@@ -19,7 +23,11 @@ import hanto.common.HantoPiece;
 import hanto.common.MoveResult;
 import hanto.studentyxu4.HantoGameFactory;
 
-
+/**
+ * The test for Gamma Hanto
+ * @author steve
+ *
+ */
 public class GammaHantoMasterTest {
 	/**
 	 * Internal class for these test cases.

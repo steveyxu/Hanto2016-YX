@@ -19,7 +19,7 @@ public class MoveRule {
 
 	 * @param moveType the type of movement
 	 */
-	public MoveRule(int maxDistance,int maxNum,HantoMoveType moveType){
+	public MoveRule(int maxDistance, int maxNum, HantoMoveType moveType){
 		this.maxDistance = maxDistance;
 		this.maxNum = maxNum;
 		this.moveType = moveType;

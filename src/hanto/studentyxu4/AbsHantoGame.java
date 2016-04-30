@@ -1,3 +1,7 @@
+/**
+ * Hanto 2016 
+ * @author Yang Xu
+ */
 package hanto.studentyxu4;
 
 import hanto.common.HantoCoordinate;
@@ -5,11 +9,16 @@ import hanto.common.HantoException;
 import hanto.common.HantoGame;
 import hanto.common.HantoPiece;
 import hanto.common.HantoPieceType;
+import hanto.common.HantoPlayerColor;
 import hanto.common.MoveResult;
 import hanto.studentyxu4.common.HantoBoard;
 import hanto.studentyxu4.common.HantoCoordinateImpl;
 import hanto.tournament.HantoMoveRecord;
 
+/**
+ * The abstract Hanto Game Class
+ * @author steve
+ */
 public abstract class AbsHantoGame implements HantoGame {
 	protected HantoBoard board;
 	
@@ -47,11 +56,11 @@ public abstract class AbsHantoGame implements HantoGame {
 	
 	/**
 	 * Make a valid move for the tournament player
-	 * @return
+	 * @param myColor HantoPlayerColor
+	 * @return HantoMoveRecord  
 	 */
-	public HantoMoveRecord generateMove(){
-		return null;
-		
+	public HantoMoveRecord generateMove(HantoPlayerColor myColor){
+		return board.findPossibleMove(myColor);
 	}
 
 }

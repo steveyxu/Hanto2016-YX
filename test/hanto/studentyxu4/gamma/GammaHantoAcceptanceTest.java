@@ -1,3 +1,7 @@
+/**
+ * Hanto 2016
+ * @author Yang(Steve) Xu
+ */
 package hanto.studentyxu4.gamma;
 
 import static hanto.common.HantoPieceType.*;
@@ -8,8 +12,17 @@ import org.junit.*;
 import hanto.common.*;
 import hanto.studentyxu4.HantoGameFactory;
 
+/**
+ * The Test class for Gamma Hanto
+ * @author steve
+ *
+ */
 public class GammaHantoAcceptanceTest
 {
+	/**
+	 * Sub class to simplify move data
+	 * @author steve
+	 */
 	class MoveData {
 		final HantoPieceType type;
 		final HantoCoordinate from, to;
@@ -259,15 +272,6 @@ public class GammaHantoAcceptanceTest
 				md(SPARROW, 1, -1), md(SPARROW, 0, 2),
 				md(SPARROW, 1, -1, 1, 0), md(SPARROW, -1, 2),
 				md(SPARROW, -1, 0, -1, 1), md(SPARROW, 0, 3));
-	}
-	
-	@Test(expected=HantoException.class)
-	public void extraCreditMoveSparrowBeforeButterflyIsOnBoard() throws HantoException
-	{
-		makeMoves(md(SPARROW, 0, 0), md (BUTTERFLY, 0, 1));
-		final HantoPiece piece = game.getPieceAt(makeCoordinate(0, 0));
-		assertEquals(SPARROW, piece.getType());
-		assertEquals(BLUE, piece.getColor());
 	}
 	
 	// Helper methods

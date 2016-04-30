@@ -1,3 +1,7 @@
+/**
+ * Hanto 2016
+ * @author Yang(Steve) Xu
+ */
 package hanto.studentyxu4.epsilon;
 
 import static org.junit.Assert.assertEquals;
@@ -18,11 +22,16 @@ import static hanto.common.HantoPlayerColor.*;
 import static hanto.common.MoveResult.*;
 
 import hanto.common.HantoPieceType;
+import hanto.common.HantoPrematureResignationException;
 import hanto.common.MoveResult;
 import hanto.studentyxu4.HantoGameFactory;
 import hanto.studentyxu4.epsilon.EpsilonHantoGame;
 
-
+/**
+ * Test cases for Epsilon Hanto
+ * @author steve
+ *
+ */
 public class EpsilonHantoMasterTest {
 	class MoveData {
 		final HantoPieceType type;
@@ -87,6 +96,10 @@ public class EpsilonHantoMasterTest {
 		return new MoveData(type, makeCoordinate(fromX, fromY), makeCoordinate(toX, toY));
 	}
 	
+	private MoveData md()
+	{
+		return new MoveData(null, null, null);
+	}
 	/**
 	 * Make the moves specified. If there is no exception, return the move result of
 	 * the last move.
@@ -159,6 +172,12 @@ public class EpsilonHantoMasterTest {
 				  md(SPARROW, 0, -1),md(HORSE, 0, 2),
 				  md(SPARROW, 0, -2),md(SPARROW, 0, 3),
 				  md(CRAB, -1,-1),md(SPARROW, 0, 3,0,-3));
+	}
+	
+	@Test (expected = HantoPrematureResignationException.class)
+	public void makePrematureException() throws HantoException
+	{
+		makeMoves(md());
 	}
 	
 }

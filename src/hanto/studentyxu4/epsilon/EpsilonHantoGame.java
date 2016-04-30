@@ -1,3 +1,7 @@
+/**
+ * Hanto 2016
+ * @author Yang Xu
+ */
 package hanto.studentyxu4.epsilon;
 
 import static hanto.common.HantoPieceType.*;
@@ -7,6 +11,9 @@ import hanto.common.HantoPlayerColor;
 import hanto.studentyxu4.AbsHantoGame;
 import hanto.studentyxu4.common.HantoBoard;
 
+/**
+ * The basic Epsilon Hanto Game class
+ */
 public class EpsilonHantoGame extends AbsHantoGame {
 	/**
 	 * Default constructor for Epsilon Hanto
@@ -19,6 +26,8 @@ public class EpsilonHantoGame extends AbsHantoGame {
 		board.addRule(SPARROW, FLY, 2, 4);
 		board.addRule(CRAB, WALK, 6, 1);
 		board.addRule(HORSE, JUMP, 4, 3);
+		
+		board.disablePrematureResign();
 	}
 
 }
