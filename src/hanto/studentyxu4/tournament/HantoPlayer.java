@@ -11,15 +11,23 @@
 package hanto.studentyxu4.tournament;
 
 import hanto.common.*;
+import hanto.studentyxu4.HantoGameFactory;
+import hanto.studentyxu4.common.HantoCoordinateImpl;
+import hanto.studentyxu4.common.HantoPieceImpl;
 import hanto.tournament.*;
 
+import static hanto.common.HantoPlayerColor.*;
+import static hanto.common.HantoPieceType.*;
+
 /**
- * Description
+ * The AI Hanto player class
  * @version Oct 13, 2014
  */
 public class HantoPlayer implements HantoGamePlayer
 {
-
+	private HantoPlayerColor myColor;
+	private HantoGame game;
+	
 	/*
 	 * @see hanto.tournament.HantoGamePlayer#startGame(hanto.common.HantoGameID, hanto.common.HantoPlayerColor, boolean)
 	 */
@@ -27,7 +35,15 @@ public class HantoPlayer implements HantoGamePlayer
 	public void startGame(HantoGameID version, HantoPlayerColor myColor,
 			boolean doIMoveFirst)
 	{
-		System.out.println("startGame");
+		this.myColor = myColor;
+		HantoPlayerColor movesFirst;
+		if (doIMoveFirst) {
+			game = HantoGameFactory.getInstance().makeHantoGame(version,myColor);
+		}
+		else {
+			movesFirst = myColor == BLUE ? RED : BLUE;
+			game = HantoGameFactory.getInstance().makeHantoGame(version,movesFirst);
+		}
 	}
 
 	/*
@@ -36,7 +52,28 @@ public class HantoPlayer implements HantoGamePlayer
 	@Override
 	public HantoMoveRecord makeMove(HantoMoveRecord opponentsMove)
 	{
-		return new HantoMoveRecord(null, null, null);
+		if (opponentsMove == null) {
+			try {
+				game.makeMove(BUTTERFLY, null, new HantoCoordinateImpl(0,0));
+			}
+			catch (HantoException e){
+				e.getMessage();
+			}
+			return new HantoMoveRecord(BUTTERFLY, null, new HantoCoordinateImpl(0,0));
+		}
+		final HantoPieceType oppPieceType = opponentsMove.getPiece();
+		final HantoCoordinate oppFrom = opponentsMove.getFrom();
+		final HantoCoordinate oppTo = opponentsMove.getTo();
+		try {
+			game.makeMove(oppPieceType, oppFrom, oppTo);
+		}
+		catch (HantoException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		return opponentsMove;
 	}
 
 }
